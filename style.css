@@ -13,17 +13,20 @@ body{
     padding-top:50px;
 }
 
+/* Logo */
 .logo{
     width:140px;
     margin-bottom:20px;
     filter: drop-shadow(0 0 15px #00ffcc);
 }
 
+/* Headings */
 h1{
     color:#00ffcc;
     text-shadow: 0 0 20px #00ffcc;
 }
 
+/* Social buttons */
 .social-buttons{
     display:flex;
     justify-content:center;
@@ -54,6 +57,7 @@ h1{
     width:24px;
 }
 
+/* Enter button */
 .enter-btn{
     padding:15px 35px;
     margin-top:25px;
@@ -71,6 +75,7 @@ h1{
     box-shadow:0 0 30px #00ffcc;
 }
 
+/* Registration form */
 .form-section{
     display:none;
     padding:20px;
@@ -100,4 +105,14 @@ input, select{
 .submit-btn:hover{
     background:white;
     box-shadow:0 0 25px #00ffcc;
+}
+
+/* Responsive */
+@media(max-width:600px){
+    input, select{
+        width:95%;
+    }
+    .enter-btn, .submit-btn{
+        width:70%;
+    }
 }
