@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RK ESPORTS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="overlay">
+
+    <!-- HOME PAGE -->
+    <div class="home" id="home">
+        <img src="images/logo.png" class="logo">
+        <h1>RK ESPORTS</h1>
+
+        <div class="social-buttons">
+            <a href="https://chat.whatsapp.com/IgvpvVDSNuSCOuYO2w182o?mode=gi_c" target="_blank" class="social-btn">
+                <img src="images/whatsapp.png" class="social-icon"> Join WhatsApp
+            </a>
+            <a href="https://vm.tiktok.com/ZS9JnSgar8Jv5-nyNjn/" target="_blank" class="social-btn">
+                <img src="images/tiktok.png" class="social-icon"> Follow TikTok
+            </a>
+        </div>
+
+        <button onclick="enterRegistration()" class="enter-btn">
+            ENTER / Registration
+        </button>
+    </div>
+
+    <!-- REGISTRATION PAGE -->
+    <div class="form-section" id="registration">
+
+        <h1>PUBG Tournament Registration</h1>
+
+        <!-- MAP SELECTION -->
+        <label>Select Map:</label>
+        <select id="map" required>
+            <option value="">Select Map</option>
+            <option>Erangel</option>
+            <option>Livik</option>
+        </select>
+
+        <!-- MODE SELECTION -->
+        <label>Select Mode:</label>
+        <select id="mode" required>
+            <option value="">Select Mode</option>
+            <option>Solo</option>
+            <option>Duo</option>
+            <option>Squad</option>
+        </select>
+
+        <!-- SOLO FORM -->
+        <div id="solo-fields" class="player-fields" style="display:none;">
+            <input type="text" placeholder="Player Name" id="solo-name">
+            <input type="text" placeholder="PUBG ID" id="solo-id">
+        </div>
+
+        <!-- DUO FORM -->
+        <div id="duo-fields" class="player-fields" style="display:none;">
+            <input type="text" placeholder="Player 1 Name" id="duo-name1">
+            <input type="text" placeholder="Player 1 PUBG ID" id="duo-id1">
+            <input type="text" placeholder="Player 2 Name" id="duo-name2">
+            <input type="text" placeholder="Player 2 PUBG ID" id="duo-id2">
+        </div>
+
+        <!-- SQUAD FORM -->
+        <div id="squad-fields" class="player-fields" style="display:none;">
+            <input type="text" placeholder="Player 1 Name" id="squad-name1">
+            <input type="text" placeholder="Player 1 PUBG ID" id="squad-id1">
+            <input type="text" placeholder="Player 2 Name" id="squad-name2">
+            <input type="text" placeholder="Player 2 PUBG ID" id="squad-id2">
+            <input type="text" placeholder="Player 3 Name" id="squad-name3">
+            <input type="text" placeholder="Player 3 PUBG ID" id="squad-id3">
+            <input type="text" placeholder="Player 4 Name" id="squad-name4">
+            <input type="text" placeholder="Player 4 PUBG ID" id="squad-id4">
+        </div>
+
+        <button onclick="register()" class="submit-btn">Register</button>
+
+        <p>Join our WhatsApp Group after registration!</p>
+
+    </div>
+
+</div>
+
+<script>
+function enterRegistration(){
+    document.getElementById("home").style.display="none";
+    document.getElementById("registration").style.display="block";
+}
+
+// Show player fields based on mode
+document.getElementById("mode").addEventListener("change", function(){
+    document.getElementById("solo-fields").style.display = "none";
+    document.getElementById("duo-fields").style.display = "none";
+    document.getElementById("squad-fields").style.display = "none";
+
+    if(this.value=="Solo"){
+        document.getElementById("solo-fields").style.display = "block";
+    } else if(this.value=="Duo"){
+        document.getElementById("duo-fields").style.display = "block";
+    } else if(this.value=="Squad"){
+        document.getElementById("squad-fields").style.display = "block";
+    }
+});
+
+// WhatsApp registration redirect with pre-filled message
+function register(){
+    let map = document.getElementById("map").value;
+    let mode = document.getElementById("mode").value;
+    let message = "PUBG Tournament Registration:\nMap: "+map+"\nMode: "+mode+"\n";
+
+    if(mode=="Solo"){
+        let name = document.getElementById("solo-name").value;
+        let id = document.getElementById("solo-id").value;
+        message += "Player: "+name+" | ID: "+id;
+    }
+    if(mode=="Duo"){
+        for(let i=1;i<=2;i++){
+            let name = document.getElementById("duo-name"+i).value;
+            let id = document.getElementById("duo-id"+i).value;
+            message += "\nPlayer "+i+": "+name+" | ID: "+id;
+        }
+    }
+    if(mode=="Squad"){
+        for(let i=1;i<=4;i++){
+            let name = document.getElementById("squad-name"+i).value;
+            let id = document.getElementById("squad-id"+i).value;
+            message += "\nPlayer "+i+": "+name+" | ID: "+id;
+        }
+    }
+
+    // WhatsApp link with pre-filled message
+    let wa_link = "https://chat.whatsapp.com/IgvpvVDSNuSCOuYO2w182o?text="+encodeURIComponent(message);
+    window.open(wa_link,"_blank");
+}
+</script>
+
+</body>
+</html>
